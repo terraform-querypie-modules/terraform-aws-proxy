@@ -1,9 +1,3 @@
-variable "type" {
-  type = string
-  default = null
-  description = "ecs"
-}
-
 variable "vpc_id" {
   default = null
   description = "a deployed vpc id"
@@ -16,7 +10,7 @@ variable "subnet_ids" {
 }
 
 variable "security_group_ids" {
-  type = list(strings)
+  type = list(string)
   default = null
   description = "attached security_group at querypie proxy"
 }
