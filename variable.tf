@@ -21,7 +21,6 @@ variable "security_group_ids" {
   description = "attached security_group at querypie proxy"
 }
 
-##### ECS #####
 variable "api_url" {
   type = string
   default = null
@@ -29,6 +28,11 @@ variable "api_url" {
     condition = var.api_url != null
     error_message = "Make sure your input value, the conditions satisfied."
   }
+}
+
+variable "log_group_name" {
+  type = string
+  default = null
 }
 
 variable "image_pull_secret_arn" {

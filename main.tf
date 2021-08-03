@@ -15,15 +15,17 @@ locals {
   timezone                  = var.timezone
   task_execute_role_arn     = var.task_execute_role_arn
   image_pull_secret_arn     = var.image_pull_secret_arn
+  log_group_name            = var.log_group_name
+  image                     = var.image
 }
 
 module "ecs" {
-  source             = "./modules/ecs"
-  vpc_id             = local.vpc_id
-  security_group_ids = local.security_group_ids
-  subnet_ids         = local.subnet_ids
-  count              = local.type == "ecs" ? 1 : 0
-
+  source                = "./modules/ecs"
+  vpc_id                = local.vpc_id
+  security_group_ids    = local.security_group_ids
+  subnet_ids            = local.subnet_ids
+  count                 = local.type == "ecs" ? 1 : 0
+  image                 = local.image
   api_url               = local.api_url
   cluster_id            = local.cluster_id
   port                  = local.port
@@ -32,6 +34,7 @@ module "ecs" {
   timezone              = local.timezone
   task_execute_role_arn = local.task_execute_role_arn
   image_pull_secret_arn = local.image_pull_secret_arn
+  log_group_name        = local.log_group_name
 }
 
 module "ec2" {
